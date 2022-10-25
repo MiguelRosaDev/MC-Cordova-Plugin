@@ -318,6 +318,11 @@ var MCCordovaPlugin = {
     track: function(eventName, attributesMap) {
         argsCheck.checkArgs('soFF', `${PLUGIN_NAME}.track`, arguments);
         _exec(undefined, undefined, 'track', [eventName, attributesMap]);
+    },
+    
+    sfmc_handleURL:  function(eventName, attributesMap) {
+        argsCheck.checkArgs('soFF', `${PLUGIN_NAME}.track`, arguments);
+        _exec(undefined, undefined, 'sfmc_handleURL', [eventName, attributesMap]);
     }
 
 };
