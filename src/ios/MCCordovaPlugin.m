@@ -207,7 +207,7 @@ const int LOG_LENGTH = 800;
         self.cachedNotification = notification;
 
         CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:notification];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:self.callbackId];    
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:self.eventsCallbackId];    
     }
 }
 
