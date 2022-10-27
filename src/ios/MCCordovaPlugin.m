@@ -205,8 +205,12 @@ const int LOG_LENGTH = 800;
     } else {
         NSLog(@"batatas sendNotificationEvent");
         self.cachedNotification = notification;
+        
+        NSError * err;
+        NSData * jsonData = [NSJSONSerialization  dataWithJSONObject:notification options:0 error:&err];
+        NSString * myString = [[NSString alloc] initWithData:jsonData   encoding:NSUTF8StringEncoding];
 
-        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:notification];
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:myString];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:self.eventsCallbackId];    
     }
 }
