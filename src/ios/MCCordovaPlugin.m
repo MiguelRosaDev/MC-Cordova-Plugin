@@ -109,12 +109,10 @@ const int LOG_LENGTH = 800;
 }
 
 - (void)sfmc_handleURL:(NSURL *)url type:(NSString *)type {
-    NSLog(@"batatas sfmc_handleURL");
     if ([type isEqualToString:@"action"] && self.eventsCallbackId != nil) {
         CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:@{@"type" : @"urlAction", @"url" : url.absoluteString}];
         [result setKeepCallbackAsBool:YES];
         [self.commandDelegate sendPluginResult:result callbackId:self.eventsCallbackId];
-        NSLog(@"batatas sfmc_handleURL 1");
     }
 }
 
@@ -200,16 +198,16 @@ const int LOG_LENGTH = 800;
 }
 
 - (void)sendNotificationEvent:(NSDictionary *)notification {
-        NSLog(@"batatas sendNotificationEvent");
     if (self.notificationOpenedSubscribed && self.eventsCallbackId != nil) {
-        CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
-                                                messageAsDictionary:notification];
+        CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:notification];
         [result setKeepCallbackAsBool:YES];
         [self.commandDelegate sendPluginResult:result callbackId:self.eventsCallbackId];
-        NSLog(@"batatas sendNotificationEvent 1");
     } else {
-        NSLog(@"batatas sendNotificationEvent 2");
+        NSLog(@"batatas sendNotificationEvent");
         self.cachedNotification = notification;
+        
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:notification];
+        [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];    
     }
 }
 
