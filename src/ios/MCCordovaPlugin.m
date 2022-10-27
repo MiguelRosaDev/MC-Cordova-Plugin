@@ -109,6 +109,7 @@ const int LOG_LENGTH = 800;
 }
 
 - (void)sfmc_handleURL:(NSURL *)url type:(NSString *)type {
+    NSLog(@"batatas sfmc_handleURL");
     if ([type isEqualToString:@"action"] && self.eventsCallbackId != nil) {
         CDVPluginResult *result = [CDVPluginResult
                resultWithStatus:CDVCommandStatus_OK
@@ -200,6 +201,7 @@ const int LOG_LENGTH = 800;
 }
 
 - (void)sendNotificationEvent:(NSDictionary *)notification {
+        NSLog(@"batatas sendNotificationEvent");
     if (self.notificationOpenedSubscribed && self.eventsCallbackId != nil) {
         CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                 messageAsDictionary:notification];
