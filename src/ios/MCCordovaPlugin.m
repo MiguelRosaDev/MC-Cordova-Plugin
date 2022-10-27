@@ -205,8 +205,8 @@ const int LOG_LENGTH = 800;
     } else {
         NSLog(@"batatas sendNotificationEvent");
         self.cachedNotification = notification;
-        
-        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:notification];
+
+        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:notification];
         [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];    
     }
 }
