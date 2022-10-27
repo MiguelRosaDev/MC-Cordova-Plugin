@@ -204,14 +204,19 @@ const int LOG_LENGTH = 800;
         [self.commandDelegate sendPluginResult:result callbackId:self.eventsCallbackId];
     } else {
         NSLog(@"batatas sendNotificationEvent");
-        self.cachedNotification = notification;
-        
-        NSError * err;
-        NSData * jsonData = [NSJSONSerialization  dataWithJSONObject:notification options:0 error:&err];
-        NSString * myString = [[NSString alloc] initWithData:jsonData   encoding:NSUTF8StringEncoding];
+        @try{  
+            self.cachedNotification = notification;
 
-        CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:myString];
-        [self.commandDelegate sendPluginResult:pluginResult callbackId:self.eventsCallbackId];    
+            NSError * err;
+            NSData * jsonData = [NSJSONSerialization  dataWithJSONObject:notification options:0 error:&err];
+            NSString * myString = [[NSString alloc] initWithData:jsonData   encoding:NSUTF8StringEncoding];
+
+            CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:myString];
+            [self.commandDelegate sendPluginResult:pluginResult callbackId:self.eventsCallbackId];   
+            }@catch (NSException* exception) {
+              CDVPluginResult* pluginResultErr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[exception reason]];  
+              [self.commandDelegate sendPluginResult:pluginResultErr callbackId:command.callbackId];
+        }
     }
 }
 
