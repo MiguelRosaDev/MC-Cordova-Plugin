@@ -210,10 +210,13 @@ const int LOG_LENGTH = 800;
             NSError * err;
             NSData * jsonData = [NSJSONSerialization  dataWithJSONObject:notification options:0 error:&err];
             NSString * myString = [[NSString alloc] initWithData:jsonData   encoding:NSUTF8StringEncoding];
-
+            
+            NSLog(@"batatas sendNotificationEvent 1");
+            
             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:myString];
             [self.commandDelegate sendPluginResult:pluginResult callbackId:self.eventsCallbackId];   
             }@catch (NSException* exception) {
+              NSLog(@"batatas sendNotificationEvent 2 error");
               CDVPluginResult* pluginResultErr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[exception reason]];  
               [self.commandDelegate sendPluginResult:pluginResultErr callbackId:self.eventsCallbackId];
         }
