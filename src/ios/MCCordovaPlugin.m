@@ -197,7 +197,17 @@ const int LOG_LENGTH = 800;
     }
 }
 
+- (void)onMessage:(CDVInvokedUrlCommand *)command {
+    self.eventsCallbackId = command.callbackId;
+}
+
 - (void)sendNotificationEvent:(NSDictionary *)notification {
+    if (self.eventsCallbackId) {
+        CDVPluginResult *pluginResult2 = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:notification];
+        [pluginResult2 setKeepCallbackAsBool:YES];
+        [self.commandDelegate sendPluginResult:pluginResult2 callbackId:self.eventsCallbackId];
+    }
+    
     if (self.notificationOpenedSubscribed && self.eventsCallbackId != nil) {
         CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:notification];
         [result setKeepCallbackAsBool:YES];
@@ -214,6 +224,7 @@ const int LOG_LENGTH = 800;
             NSLog(@"batatas sendNotificationEvent 1");
             
             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:myString];
+            [result setKeepCallbackAsBool:YES];
             [self.commandDelegate sendPluginResult:pluginResult callbackId:self.eventsCallbackId];   
             }@catch (NSException* exception) {
               NSLog(@"batatas sendNotificationEvent 2 error");
