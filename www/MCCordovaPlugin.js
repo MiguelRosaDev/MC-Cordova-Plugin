@@ -320,8 +320,8 @@ var MCCordovaPlugin = {
         _exec(undefined, undefined, 'track', [eventName, attributesMap]);
     },
     
-    sendNotificationEvent:  function(successCallback, errorCallback) {
-        _exec(successCallback, errorCallback, 'sendNotificationEvent');
+    onMessage: function(successCallback, errorCallback) {
+        _exec(successCallback, errorCallback, 'onMessage', []);
     }
 
 };
