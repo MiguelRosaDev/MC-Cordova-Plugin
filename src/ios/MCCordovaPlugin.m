@@ -215,7 +215,7 @@ const int LOG_LENGTH = 800;
             [self.commandDelegate sendPluginResult:pluginResult callbackId:self.eventsCallbackId];   
             }@catch (NSException* exception) {
               CDVPluginResult* pluginResultErr = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:[exception reason]];  
-              [self.commandDelegate sendPluginResult:pluginResultErr callbackId:command.callbackId];
+              [self.commandDelegate sendPluginResult:pluginResultErr callbackId:self.eventsCallbackId];
         }
     }
 }
