@@ -224,7 +224,7 @@ const int LOG_LENGTH = 800;
             NSLog(@"batatas sendNotificationEvent 1");
             
             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:myString];
-            [result setKeepCallbackAsBool:YES];
+            [pluginResult setKeepCallbackAsBool:YES];
             [self.commandDelegate sendPluginResult:pluginResult callbackId:self.eventsCallbackId];   
             }@catch (NSException* exception) {
               NSLog(@"batatas sendNotificationEvent 2 error");
