@@ -150,6 +150,7 @@ public class MCCordovaPlugin extends CordovaPlugin implements UrlHandler {
 
     private void handleNotificationMessage(@Nullable NotificationMessage message) {
         if (message != null) {
+            Log.e(TAG, "handleNotificationMessage");
             // Open from push
             PluginResult result;
 
