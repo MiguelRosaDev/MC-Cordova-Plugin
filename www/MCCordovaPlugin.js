@@ -323,6 +323,10 @@ var MCCordovaPlugin = {
     onMessage: function(successCallback, errorCallback) {
         _exec(successCallback, errorCallback, 'onMessage', []);
     }
+    
+    handleNotificationMessage: function(successCallback, errorCallback) {
+        _exec(successCallback, errorCallback, 'handleNotificationMessage', []);
+    }
 
 };
 
