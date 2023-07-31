@@ -150,7 +150,7 @@ const int LOG_LENGTH = 800;
             [self setDelegate];
             [[MarketingCloudSDK sharedInstance] sfmc_setURLHandlingDelegate:self];
             [[MarketingCloudSDK sharedInstance] sfmc_addTag:@"Cordova"];
-            [self requestPushPermission];
+            
         } else if (configError != nil) {
             os_log_debug(OS_LOG_DEFAULT, "%@", configError);
             if (configError.code == configureInvalidAppEndpointError) {
@@ -300,6 +300,12 @@ const int LOG_LENGTH = 800;
 
     [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK
                                                              messageAsString:systemToken]
+                                callbackId:command.callbackId];
+}
+
+- (void)requestInitialize:(CDVInvokedUrlCommand *)command {
+    [self requestPushPermission];
+    [self.commandDelegate sendPluginResult:[CDVPluginResult resultWithStatus:CDVCommandStatus_OK]
                                 callbackId:command.callbackId];
 }
 
