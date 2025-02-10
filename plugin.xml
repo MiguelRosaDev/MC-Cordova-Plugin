@@ -49,6 +49,11 @@
             <preference name="AndroidXEnabled" value="true" />
             <preference name="GradlePluginGoogleServicesEnabled" value="true" />
             <preference name="GradlePluginGoogleServicesVersion" value="4.3.14" />
+            
+            <preference name="com.salesforce.marketingcloud.app_id" value="$APP_ID" />
+            <preference name="com.salesforce.marketingcloud.access_token" value="$ACCESS_TOKEN" />
+            <preference name="com.salesforce.marketingcloud.tenant_specific_endpoint" value="$TENANT_SPECIFIC_ENDPOINT" />
+            <preference name="com.salesforce.marketingcloud.notification_small_icon" value="$NOTIFICATION_SMALL_ICON" />
         </config-file>
         
         <config-file parent="/manifest/application" target="AndroidManifest.xml">
@@ -71,6 +76,9 @@
                 <param name="ios-package" value="MCCordovaPlugin" />
                 <param name="onload" value="true" />
             </feature>
+          <preference name="com.salesforce.marketingcloud.app_id" value="$APP_ID" />
+          <preference name="com.salesforce.marketingcloud.access_token" value="$ACCESS_TOKEN" />
+          <preference name="com.salesforce.marketingcloud.tenant_specific_endpoint" value="$TENANT_SPECIFIC_ENDPOINT" />
         </config-file>
         <config-file target="*-Info.plist" parent="UIBackgroundModes">
             <array>
