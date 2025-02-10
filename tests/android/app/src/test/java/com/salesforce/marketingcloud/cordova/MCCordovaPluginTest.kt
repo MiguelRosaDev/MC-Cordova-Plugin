@@ -337,8 +337,8 @@ class MCCordovaPluginTest {
     }
 
     @Test
-    fun execute_enableVerboseLogging_success() {
-        assertThat(plugin.execute("enableVerboseLogging", JSONArray(), callbackContext)).isTrue()
+    fun execute_enableLogging_success() {
+        assertThat(plugin.execute("enableLogging", JSONArray(), callbackContext)).isTrue()
 
         assertThat(ShadowMarketingCloudSdk.getLogLevel()).isEqualTo(MCLogListener.VERBOSE)
         assertThat(ShadowMarketingCloudSdk.getLogListener()).isInstanceOf(
@@ -351,6 +351,17 @@ class MCCordovaPluginTest {
         assertThat(plugin.execute("disableVerboseLogging", JSONArray(), callbackContext)).isTrue()
 
         assertThat(ShadowMarketingCloudSdk.getLogListener()).isNull()
+    }
+
+    @Test
+    fun execute_getDeviceId_success() {
+        ShadowMarketingCloudSdk.isReady(true)
+        whenever(registrationManager.deviceId).thenReturn("testDeviceId")
+
+        assertThat(plugin.execute("getDeviceId", JSONArray(), callbackContext)).isTrue()
+
+        verify(registrationManager).deviceId
+        verify(callbackContext).success("testDeviceId")
     }
 
     @Test
